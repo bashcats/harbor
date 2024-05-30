@@ -115,7 +115,7 @@ manualinstall() {
 
 maininstall() {
 	whiptail --title "HARBOR Installation" --infobox "Installing \`$1\` ($n of $total). $1 $2" 13 69
-	installpkg "$1"
+	pacmaninstallpkg "$1"
 }
 
 gitmakeinstall() {
@@ -146,7 +146,7 @@ aurinstall() {
 pipinstall() {
 	whiptail --title "HARBOR Installation" \
 		--infobox "Installing the Python package \`$1\` ($n of $total). $1 $2" 13 69
-	[ -x "$(command -v "pip")" ] || installpkg python-pip >/dev/null 2>&1
+	[ -x "$(command -v "pip")" ] || pacmaninstallpkg python-pip >/dev/null 2>&1
 	yes | pip install "$1"
 }
 
@@ -251,7 +251,7 @@ refreshkeys ||
 for x in curl ca-certificates base-devel git ntp zsh; do
 	whiptail --title "HARBOR Installation" \
 		--infobox "Installing \`$x\`.." 13 69
-	installpkg "$x"
+	pacmaninstallpkg "$x"
 done
 
 whiptail --title "HARBOR Installation" \
